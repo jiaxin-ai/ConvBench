@@ -74,7 +74,7 @@ def infer_data_api(work_dir, model_name, dataset_name, index_set, api_nproc=4):
 def infer_data(model_name, work_dir, dataset_name, out_file, verbose=False, api_nproc=4):
     model = supported_VLM[model_name]() if isinstance(model_name, str) else model_name
 
-    data_sampler = DatasetSampler("../visit_bench_images")
+    data_sampler = DatasetSampler("../")
 
     is_api = getattr(model, 'is_api', False)
     if is_api:
