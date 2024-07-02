@@ -1,6 +1,6 @@
 ## Evaluation
 
-To calculate the scores, please prepare the model responses in yaml format, like this [example](VLMEvalKit/work_dirs/InternVL-Chat-V1-2/0/1.yaml). Then you can place all yaml files in a work_dir folder and execute our script [convbencheval.py](convbencheval.py) to get the scores.
+To calculate the scores, please prepare the model responses in yaml format, like this [example](./VLMEvalKit/work_dirs/InternVL-Chat-V1-2/0/1.yaml). Then you can place all yaml files in a work_dir folder and execute our script [convbencheval.py](convbencheval.py) to get the scores.
 
 ```shell
 python convbencheval.py --vqa_model="InternVL-Chat-V1-2" 
