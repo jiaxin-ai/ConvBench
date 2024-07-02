@@ -1,0 +1,20 @@
+first_turn_answer: The vehicle shown in the image is a Hummer H2, which is a large
+  SUV known for its size and off-road capabilities. The text on the spare tire cover
+  reads "Hummer H2". The license plate on the vehicle has the inscription "CPTLISM,"
+  which likely stands for "capitalism" and is a custom vanity plate.
+first_turn_instruction: What kind of vehicle is shown the image? What texts are written
+  on the car?
+image_path: /mnt/petrelfs/wangwenhai/workspace/InternVL-release/internvl_chat_dev/data/ConvBench/VLMEvalKit/mte/images/30_tested_skill_catchy_titles_4ca5b82782903f1c.png
+second_turn_answer: The image shows a Hummer H2 driving down a highway, with its large
+  size and distinctive design making it stand out among other vehicles. The spare
+  tire cover on the back of the vehicle displays the text "Hummer H2," indicating
+  the make and model of the SUV. The license plate, which reads "CPTLISM," is a custom
+  vanity plate that likely represents the owner's political or ideological beliefs,
+  in this case, capitalism. The combination of the Hummer H2's size, the spare tire
+  cover, and the license plate creates a unique and eye-catching scene on the highway.
+second_turn_instruction: Why does it look like that, please combine the content of
+  the picture with the text? Why is this information presented in such a form
+third_turn_answer: '"Unleash the Power of Capitalism with Hummer H2 - The Ultimate
+  SUV for the Bold and Adventurous!"'
+third_turn_instruction: Combine that with the previous question, create a slogan for
+  the hummer, and get more people to buy it
