@@ -1,0 +1,23 @@
+first_turn_answer: The image shows a white Hummer H2 with the word "HUMMER" written
+  on the back.
+first_turn_instruction: What kind of vehicle is shown the image? What texts are written
+  on the car?
+image_path: /mnt/petrelfs/wangwenhai/workspace/InternVL-release/internvl_chat_dev/data/ConvBench/VLMEvalKit/mte/images/30_tested_skill_catchy_titles_4ca5b82782903f1c.png
+second_turn_answer: The image presents a white Hummer H2 driving down a highway, with
+  the word "HUMMER" written on the back. The car is surrounded by other vehicles,
+  indicating that it is in traffic. The Hummer is a large, robust vehicle known for
+  its off-road capabilities and distinctive design. The presence of the word "HUMMER"
+  on the back of the car serves as a brand identifier, making it easily recognizable
+  to other drivers and passersby.
+second_turn_instruction: Why does it look like that, please combine the content of
+  the picture with the text? Why is this information presented in such a form
+third_turn_answer: '"Unleash the Power of Adventure: Drive a Hummer H2 Today!"
+
+
+  This slogan emphasizes the Hummer H2''s off-road capabilities and adventurous spirit,
+  appealing to potential buyers who are looking for a vehicle that can handle any
+  terrain and provide a thrilling driving experience. By highlighting the Hummer''s
+  unique features and its ability to conquer any challenge, this slogan aims to attract
+  more customers and increase sales.'
+third_turn_instruction: Combine that with the previous question, create a slogan for
+  the hummer, and get more people to buy it
