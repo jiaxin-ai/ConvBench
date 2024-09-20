@@ -1,7 +1,7 @@
 To create the enviroment.
 
 ```shell
-pip install requirements
+pip install requirements.txt
 ```
 
 To generate the multi-turn responses for each sample in ConvBench via each Large Vision-Language Model.
