@@ -3,7 +3,11 @@ To create the enviroment.
 ```shell
 pip install requirements.txt
 ```
+To prepare the dataset and the annotation file.
 
+```shell
+Please remove the images and annotation file to mte.
+```
 To generate the multi-turn responses for each sample in ConvBench via each Large Vision-Language Model.
 
 ```shell
