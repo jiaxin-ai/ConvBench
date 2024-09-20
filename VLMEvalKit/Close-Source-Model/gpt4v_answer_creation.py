@@ -9,14 +9,14 @@ from openai import OpenAI
 from tqdm import tqdm
 import pdb
 
-from data import DataSampler
+from data import DatasetSampler
 
 import random
 import time
 import re
 from PIL import Image
 import base64
-os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 #os.environ["OPENAI_API_KEY"] = "sb-fb43570969a6107c4dc146c41841f9c342f9c94befc8fd29"
 #os.environ["OPENAI_API_KEY"] = "sb-21a8b17645c06e2fc402f20a5ad2a833af150f8f86125a73"
 #os.environ["OPENAI_API_KEY"] = "sb-719c6650f5e094abe3a9ad901640b55b847f66e6684b6eee"
@@ -90,7 +90,7 @@ def parse_final_answer(gpt_response):
 
 def IdealGPT(dataset, data_ids,  save_path=''):
     for data_id in tqdm(data_ids):
-        image_id, image_path, first_turn_instruction, second_turn_instruction, third_turn_instruction, instruction_conditioned_caption  = dataset.fetch_data(data_id)
+        image_id, image_path, first_turn_instruction, second_turn_instruction, third_turn_instruction, instruction_conditioned_caption, first_turn_category, second_turn_category, third_turn_category, first_turn_human_answer, second_turn_human_answer, third_turn_human_answer, third_turn_demands   = dataset.fetch_data(data_id)
         #image_split = image_path.split("/")
         #image_name = image_split[-1]
         #image_name_split = image_name.split(".")
@@ -112,36 +112,38 @@ def IdealGPT(dataset, data_ids,  save_path=''):
         first_turn_content = [{"type":"text","text":gpt4v_prompt+first_turn_instruction},{"type":"image_url","image_url":{"url": f"data:image/jpeg;base64,{base64_image}","image_detail": "low"}},]
         history_chat.append([human, first_turn_content])
         history_chat.append([model_name, None])
-        first_turn_answer, first_token = call_gpt(history_chat)
-        history_chat[-1][1] = first_turn_answer
-        print("first_turn_token",first_token)
+        history_chat[-1][1] = first_turn_human_answer
 
         second_turn_content = [{"type":"text","text":gpt4v_prompt+second_turn_instruction},{"type":"image_url","image_url":{"url": f"data:image/jpeg;base64,{base64_image}","image_detail": "low"}},]
         history_chat.append([human, second_turn_content])
         history_chat.append([model_name, None])
-        second_turn_answer, second_token = call_gpt(history_chat)
-        history_chat[-1][1] = second_turn_answer        
-        print("second_turn_token",second_token)
+        history_chat[-1][1] = second_turn_human_answer        
 
         third_turn_content = [{"type":"text","text":gpt4v_prompt+third_turn_instruction},{"type":"image_url","image_url":{"url": f"data:image/jpeg;base64,{base64_image}","image_detail": "low"}},]
         history_chat.append([human, third_turn_content])
         history_chat.append([model_name, None])
         third_turn_answer, third_token = call_gpt(history_chat)
         history_chat[-1][1] = third_turn_answer        
-        print("third_turn_token",third_token)
+
 
         results = {}
         results['image_path'] = image_path
-        #results['instruction_conditioned_caption'] = instruction_conditioned_caption
+        results['instruction_conditioned_caption'] = instruction_conditioned_caption
         results['first_turn_instruction'] = first_turn_instruction
-        results['first_turn_answer'] = first_turn_answer
+        results['first_turn_human_answer'] = first_turn_human_answer
+        results['first_turn_category'] = first_turn_category
+
+
         results['second_turn_instruction'] = second_turn_instruction
-        results['second_turn_answer'] = second_turn_answer
+        results['second_turn_human_answer'] = second_turn_human_answer
+        results['second_turn_category'] = second_turn_category        
+
         results['third_turn_instruction'] = third_turn_instruction
         results['third_turn_answer'] = third_turn_answer
-        results["first_tokens"] = first_token
-        results["second_tokens"] = second_token
-        results["third_tokens"] = third_token
+        results['third_turn_human_answer'] = second_turn_human_answer
+        results['third_turn_category'] = third_turn_category     
+        results['third_turn_demands'] = third_turn_demands   
+
 
         if save_path:
             with open(result_path, 'w') as f:
@@ -151,7 +153,7 @@ def parse():
     parser = argparse.ArgumentParser(description='IdealGPT Args.')
     parser.add_argument('--data_root', type=str, default="/mnt/lustre/liushuo/VLMEvalKit/mte/", 
                         help='root path to the dataset')
-    parser.add_argument('--save_root', type=str, default='./evaluation_result/exp_result/gpt4v/', 
+    parser.add_argument('--save_root', type=str, default='./evaluation_result/exp_result_creation/gpt4v/', 
                         help='root path for saving results')
     parser.add_argument('--model', type=str, default='chatgpt', choices=['chatgpt', 'gpt4'],
                         help='model used to ask question. can be gpt3, chatgpt, or its concrete tags in openai system')
@@ -171,13 +173,12 @@ def main(args):
     random.seed(args.seed)
 
     # load the dataset
-    dataset = DataSampler(dataset_root=args.data_root)
+    dataset = DatasetSampler(dataset_root=args.data_root)
     print('Finish loading data')
     question_model = args.model
 
     # preparing the folder to save results
-    #save_path = args.save_root
-    save_path = "/mnt/lustre/liushuo/VLMEvalKit/work_dirs/GPT4V/0"
+    save_path = "/mnt/lustre/liushuo/VLMEvalKit/work_dirs/GPT4V/2"
     if not os.path.exists(save_path):
         os.makedirs(save_path)
 
