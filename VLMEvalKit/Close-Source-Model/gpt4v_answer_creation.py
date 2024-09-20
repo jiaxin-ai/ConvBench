@@ -16,12 +16,8 @@ import time
 import re
 from PIL import Image
 import base64
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-#os.environ["OPENAI_API_KEY"] = "sb-fb43570969a6107c4dc146c41841f9c342f9c94befc8fd29"
-#os.environ["OPENAI_API_KEY"] = "sb-21a8b17645c06e2fc402f20a5ad2a833af150f8f86125a73"
-#os.environ["OPENAI_API_KEY"] = "sb-719c6650f5e094abe3a9ad901640b55b847f66e6684b6eee"
-os.environ["OPENAI_API_KEY"] = "sb-60b04634ed26bc0d447ff7a02198c6b5652a465e3928f5b6"
-#os.environ["OPENAI_API_KEY"] = "sk-whqQs9OWYxRLmNYo6e1fC0D8Ce00481196F2150eB0579417"
+
+#os.environ["OPENAI_API_KEY"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 os.environ["OPENAI_BASE_URL"] = "https://api.openai-sb.com/v1"
 
 def encode_image_file_to_base64(image_path):
