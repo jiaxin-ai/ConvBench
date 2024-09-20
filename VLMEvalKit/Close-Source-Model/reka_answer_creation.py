@@ -18,15 +18,14 @@ from PIL import Image
 import base64
 os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
-# os.environ["OPENAI_API_KEY"] = "sb-60b04634ed26bc0d447ff7a02198c6b5652a465e3928f5b6"
+# os.environ["OPENAI_API_KEY"] = "xxxxxxxxxxxxxxxxxxxxxxxxxx"
 os.environ["OPENAI_BASE_URL"] = "https://api.openai-sb.com/v1"
 
 import reka
 
 # You can either set the API key as below, or use the
 # environment variable export REKA_API_KEY="your-api-key"
-reka.API_KEY = "e3a4ad937e438a7839bc29d3dc1620fe82cef52da60aa24c935971cda36d610f"
-# reka.API_KEY = "1aa0c2dfcf801e1934f3d896db38cef724cf6fff0a975aa0e8697bac674b9bd4"
+# reka.API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 def encode_image_file_to_base64(image_path):
     if image_path.endswith('.png'):
